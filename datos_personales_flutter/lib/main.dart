@@ -13,7 +13,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Formulario Datos Personales',
-      home: FormularioPage(),
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.lightBlue[50],
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(fontSize: 18),
+        ),
+      ),
+      home: const FormularioPage(),
     );
   }
 }
@@ -81,36 +87,64 @@ class _FormularioPageState extends State<FormularioPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Formulario Datos Personales')),
+      appBar: AppBar(
+        title: const Text('Formulario Datos Personales'),
+        backgroundColor: Colors.lightBlue,
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Text('Formulario Datos Personales', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            TextField(
-              controller: _documentoController,
-              decoration: InputDecoration(labelText: 'Documento'),
-            ),
-            TextField(
-              controller: _nombresController,
-              decoration: InputDecoration(labelText: 'Nombres'),
-            ),
-            TextField(
-              controller: _apellidosController,
-              decoration: InputDecoration(labelText: 'Apellidos'),
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(onPressed: guardarDatos, child: Text('Guardar')),
-                ElevatedButton(onPressed: mostrarDatos, child: Text('Mostrar')),
-              ],
-            ),
-            SizedBox(height: 20),
-            Text('Resultados:', style: TextStyle(fontWeight: FontWeight.bold)),
-            Expanded(child: SingleChildScrollView(child: Text(_resultado))),
-          ],
+        padding: const EdgeInsets.all(20.0),
+        child: Center(
+          child: Column(
+            children: [
+              const Text(
+                'Formulario Datos Personales',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                controller: _documentoController,
+                decoration: const InputDecoration(labelText: 'Documento'),
+              ),
+              TextField(
+                controller: _nombresController,
+                decoration: const InputDecoration(labelText: 'Nombres'),
+              ),
+              TextField(
+                controller: _apellidosController,
+                decoration: const InputDecoration(labelText: 'Apellidos'),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: guardarDatos,
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.blueAccent),
+                    child: const Text('Guardar'),
+                  ),
+                  ElevatedButton(
+                    onPressed: mostrarDatos,
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.blueAccent),
+                    child: const Text('Mostrar'),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                'Resultados:',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Text(
+                    _resultado,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
